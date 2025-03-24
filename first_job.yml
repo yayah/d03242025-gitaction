@@ -12,8 +12,9 @@ jobs:
       - name: Welcome Message
         run: echo "My first GitHub Actions Job"
 
-      - name: List Files
-        run: ls
+      - name: List all files including hidden files
+        run: ls -1a
 
-      - name: Read file
-        run: cat compose.yml
+      - name: show present working directory
+        run: pwd
+        
