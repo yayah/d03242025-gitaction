@@ -11,12 +11,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Git
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --global user.name "Yayah"
+          git config --global user.email "yayasark@gmail.com"
+
+      - name: List Kubernetes files
+        run: |
+          ls /mnt/c/Users/HP/Downloads/kubernetes-work/kubernetes/
 
       - name: Copy Kubernetes files
         run: |
@@ -28,3 +32,16 @@ jobs:
           git add kubernetes/*
           git commit -m "Deploy Kubernetes files"
           git push
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'v1.20.0'
+
+      - name: Deploy to Kubernetes
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        run: |
+          for file in kubernetes/*; do
+            kubectl apply -f $file
+          done
