@@ -12,9 +12,22 @@ jobs:
       - name: Welcome Message
         run: echo "My first GitHub Actions Job"
 
-      - name: List Files
+      - name: list all files including hidden files
         run: ls -1s 
 
-      - name: list all files including hidden files
-      
-        run: cat dockerfile
+      - name: list present working directory
+        run: pwd       
+      - name: create working directory
+        run: mkdir baobab
+      - name: change directory
+        run: cd baobab
+      - name: list present working directory
+        run: pwd 
+      - name: create a file
+        run: touch baobab.txt
+      - name: cat baobab
+        run: cat baobab.txt
+      - name: vim baobab
+        run: |
+          echo "congratulation" > baobab.txt
+          
