@@ -1,0 +1,48 @@
+name: Multi-Job Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test_job:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y toilet figlet
+
+      - name: Run Tests
+        run: |
+          echo "Running tests..."
+          figlet "Tests Passed!"
+
+  build_job:
+    name: Build Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Build Application
+        run: |
+          echo "Building application..."
+          figlet "Build Complete!"
+
+  deploy_job:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Deploy Application
+        run: |
+          echo "Deploying application..."
+          figlet "Deployment Successful!"
