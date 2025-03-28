@@ -1,0 +1,33 @@
+name: ASCII Art Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ascii_art_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install ASCII Art Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y toilet figlet
+
+      - name: Generate ASCII Art with Toilet
+        run: |
+          echo "Generating ASCII Art with Toilet:"
+          toilet "Hello, World!"
+
+      - name: Generate ASCII Art with Figlet
+        run: |
+          echo "Generating ASCII Art with Figlet:"
+          figlet "Hello, World!"
+
+      - name: Save ASCII Art to File
+        run: |
+          figlet "GitHub Actions" > ascii_art.txt
+          echo "ASCII art saved to ascii_art.txt"
+
+      - name: Display Saved ASCII Art
+        run: cat ascii_art.txt
